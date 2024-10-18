@@ -76,7 +76,7 @@ export default function OnboardPageCard({ user, email }) {
       .then((res) => {
         if (res.success) {
           toast.success("Profile Created !");
-          router.push("/");
+          router.refresh("/onboard");
         } else {
           toast.error(res.message);
         }

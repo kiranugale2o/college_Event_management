@@ -1,8 +1,9 @@
 "use client";
 
+import { calculateDay } from "@/utils";
 import { useRouter } from "next/navigation";
 
-export default function HomePage() {
+export default function HomePage({ Events }) {
   const router = useRouter();
   return (
     <>
@@ -40,13 +41,12 @@ export default function HomePage() {
             Featured events
           </h2>
           <div className="block lg:flex">
-            <div className="p-4 w-[300px]  w-[300px] ">
+            <div className="mx-auto p-4 mx-auto w-[300px]  w-[300px] ">
               <div className="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start">
                 <div
                   className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl "
                   style={{
-                    backgroundImage:
-                      'url("https://cdn.usegalileo.ai/sdxl10/d5e02eb1-b87e-41f1-879c-14d1ddd90deb.png")',
+                    backgroundImage: 'url("cricket1.jpg")',
                   }}
                 />
                 <div className="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
@@ -69,13 +69,12 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="p-4 w-[300px]">
+            <div className="mx-auto p-4 w-[300px]">
               <div className="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start">
                 <div
                   className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
                   style={{
-                    backgroundImage:
-                      'url("https://cdn.usegalileo.ai/sdxl10/c6e82664-23a9-43fb-b0c1-d3fba350b2e0.png")',
+                    backgroundImage: 'url("gsgplacement.jpg")',
                   }}
                 />
                 <div className="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
@@ -83,12 +82,12 @@ export default function HomePage() {
                     Trending
                   </p>
                   <p className="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em]">
-                    GSG Eats: Taco Tuesday
+                    GSG : Placement Drive
                   </p>
                   <div className="flex items-end gap-3 justify-between">
                     <div className="flex flex-col gap-1">
                       <p className="text-[#637588] text-base font-normal leading-normal">
-                        June 28 • 5:00 PM - 7:00 PM
+                        june 28 • 10:00 AM - 5:00 PM
                       </p>
                       <p className="text-[#637588] text-base font-normal leading-normal">
                         Open to all members
@@ -98,13 +97,12 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="p-4 w-[300px]">
+            <div className="mx-auto p-4 w-[300px]">
               <div className="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start">
                 <div
                   className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
                   style={{
-                    backgroundImage:
-                      'url("https://cdn.usegalileo.ai/sdxl10/c6e82664-23a9-43fb-b0c1-d3fba350b2e0.png")',
+                    backgroundImage: 'url("canting.jpg")',
                   }}
                 />
                 <div className="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
@@ -128,13 +126,12 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="p-4 w-[300px]">
+            <div className="mx-auto p-4 w-[300px]">
               <div className="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start">
                 <div
                   className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
                   style={{
-                    backgroundImage:
-                      'url("https://cdn.usegalileo.ai/stability/6884234e-9561-4842-bc9c-b9b22e7d29f3.png")',
+                    backgroundImage: 'url("yoga.jpg")',
                   }}
                 />
                 <div className="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-1 py-4 @xl:px-4">
@@ -161,57 +158,30 @@ export default function HomePage() {
           <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
             Announcements
           </h2>
-          <div className="flex items-center gap-4 bg-white px-4 min-h-[72px] py-2">
-            <div
-              className="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-14"
-              style={{
-                backgroundImage:
-                  'url("https://cdn.usegalileo.ai/sdxl10/4d576cd1-406b-4cce-a03b-00aefdcfbeb5.png")',
-              }}
-            />
-            <div className="flex flex-col justify-center">
-              <p className="text-[#111418] text-base font-medium leading-normal line-clamp-1">
-                GSG Fest: Volunteer Orientation
-              </p>
-              <p className="text-[#637588] text-sm font-normal leading-normal line-clamp-2">
-                Starts in 3 days
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 bg-white px-4 min-h-[72px] py-2">
-            <div
-              className="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-14"
-              style={{
-                backgroundImage:
-                  'url("https://cdn.usegalileo.ai/sdxl10/a59fa6a5-974d-43f2-90f2-99230ffdfd39.png")',
-              }}
-            />
-            <div className="flex flex-col justify-center">
-              <p className="text-[#111418] text-base font-medium leading-normal line-clamp-1">
-                GSG Fest: Artist Meet &amp; Greet
-              </p>
-              <p className="text-[#637588] text-sm font-normal leading-normal line-clamp-2">
-                Starts in 5 days
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 bg-white px-4 min-h-[72px] py-2">
-            <div
-              className="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-14"
-              style={{
-                backgroundImage:
-                  'url("https://cdn.usegalileo.ai/sdxl10/42201a88-d270-47af-836c-e303605a55a9.png")',
-              }}
-            />
-            <div className="flex flex-col justify-center">
-              <p className="text-[#111418] text-base font-medium leading-normal line-clamp-1">
-                GSG Fest: Community Clean-up
-              </p>
-              <p className="text-[#637588] text-sm font-normal leading-normal line-clamp-2">
-                Starts in 7 days
-              </p>
-            </div>
-          </div>
+          {Events && Events.length > 0 ? (
+            <>
+              {Events.map((d) => {
+                return (
+                  <div className="flex items-center gap-4 bg-white px-4 min-h-[72px] py-2">
+                    <div
+                      className="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-14"
+                      style={{
+                        backgroundImage: 'url("gsglogo.png")',
+                      }}
+                    />
+                    <div className="flex flex-col justify-center">
+                      <p className="text-[#111418] text-base font-medium leading-normal line-clamp-1">
+                        {d.branch}:{d.eventName}
+                      </p>
+                      <p className="text-[#637588] text-sm font-normal leading-normal line-clamp-2">
+                        Starts in {calculateDay(d?.date)} days
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </>
+          ) : null}
           <h3 className="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">
             Join the GSG community
           </h3>

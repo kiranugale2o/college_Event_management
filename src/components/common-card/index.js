@@ -22,7 +22,7 @@ export default function CommonCard({
   const router = useRouter();
   return (
     <>
-      <Card className="w-[340px] lg:w-[400px] shadow-md ">
+      <Card className="w-[340px] lg:w-[400px] shadow-md bg-sky-100">
         <CardHeader>
           <CardTitle className="flex ">
             <PartyPopper />

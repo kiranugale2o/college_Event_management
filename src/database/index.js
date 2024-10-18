@@ -4,8 +4,6 @@ async function DatabaseConn() {
 
   mongoose
     .connect(Mongo_DB, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       serverSelectionTimeoutMS: 30000, // Increase timeout to 30 seconds
     })
     .then(() => {

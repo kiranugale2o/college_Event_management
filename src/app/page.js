@@ -12,17 +12,19 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
-  // const user = await currentUser();
+  const user = await currentUser();
   // if (!user) redirect("/sign-up");
 
-  // const ProfileUser = await fetchUser(user?.userId);
-  // if (user && !ProfileUser?._id) {
-  //   redirect("/onboard");
-  // }
+  const ProfileUser = await fetchUser(user?.userId);
+  if (user && !ProfileUser?._id) {
+    redirect("/onboard");
+  }
+
+  const Events = await getAllEvents();
 
   return (
     <>
-      <HomePage />
+      <HomePage Events={Events} />
     </>
   );
 }

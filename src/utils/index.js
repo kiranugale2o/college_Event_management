@@ -94,7 +94,7 @@ export const eventFormField = [
   {
     label: "date",
     name: "date",
-    placeholder: "Enter date, In {26 nov 2024} this format",
+    placeholder: "Enter date, In {yyyy-mm-dd} this format",
   },
 ];
 export const eventInitialData = {
@@ -153,4 +153,21 @@ export function getCurrentDate() {
   const day = String(date.getDate()).padStart(2, "0");
 
   return `${year}-${month}-${day}`;
+}
+
+export function calculateDay(mydate) {
+  // Get today's date
+  const today = new Date();
+
+  const targetDate = new Date(mydate);
+
+  // Calculate the difference in milliseconds
+  const differenceInMilliseconds = targetDate - today;
+
+  // Convert the difference from milliseconds to days
+  const differenceInDays = Math.ceil(
+    differenceInMilliseconds / (1000 * 60 * 60 * 24)
+  );
+
+  return differenceInDays;
 }

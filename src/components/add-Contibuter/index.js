@@ -57,7 +57,7 @@ export default function AddContribute(id) {
           Add Contributer
         </Button>
 
-        <DialogContent className="sm:max-w-[485px]">
+        <DialogContent className=" overflow-auto h-[400px]  w-[320px] lg:w-[400px]">
           <DialogHeader>
             <DialogTitle> Add Contributer</DialogTitle>
             <DialogDescription>

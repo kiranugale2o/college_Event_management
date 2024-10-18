@@ -6,12 +6,12 @@ export default async function OnboardPage(params) {
   const user = await currentUser();
   if (!user) redirect("/sign-up");
   const ProfileUser = await fetchUser(user?.userId);
+
   if (ProfileUser?._id) {
-    redirect("/");
+    if (ProfileUser?.role === "recruiter" && !ProfileUser?.isPrimiumUser)
+      redirect("/membership");
+    else redirect("/");
+  } else {
+    return <OnboardPageCard user={user?.userId} email={user?.email} />;
   }
-  return (
-    <>
-      <OnboardPageCard user={user?.userId} email={user?.email} />
-    </>
-  );
 }

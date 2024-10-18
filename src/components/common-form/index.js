@@ -19,7 +19,7 @@ export default function CommonForm({
     <>
       <div className="flex flex-col w-full justify-between item-center ">
         <div className="text-[20px]">{Tabtext}</div>
-        <div className="w-full p-10">
+        <div className="w-full lg:p-5">
           <form action={buttonAction} className=" grid gap-5 grid-row-4 w-full">
             {formData.map((d) => {
               return (
@@ -27,7 +27,7 @@ export default function CommonForm({
                   <Input
                     required
                     key={d.label}
-                    className="bg-white hover:bg-stone-50 p-auto text-1xl hover:drop-shadow-2xl hover:bg-white "
+                    className="bg-white hover:bg-stone-50 w-full p-auto text-1xl hover:drop-shadow-2xl hover:bg-white "
                     type={d.contentType}
                     disabled={d.disabled}
                     value={currentData?.[d.name] || ""}
@@ -43,11 +43,7 @@ export default function CommonForm({
                 </>
               );
             })}
-            <Button
-              type="submit"
-              variant="outline"
-              className=" bg-sky-400 lg:text-[15px] "
-            >
+            <Button type="submit" className=" bg-sky-400  lg:text-[15px] ">
               {buttonText}
             </Button>
           </form>
