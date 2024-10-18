@@ -16,7 +16,7 @@ export default async function UpdateEventsInfo({ params }) {
   }
 
   return (
-    <div className="lg:p-24">
+    <div className="p-3 lg:p-24">
       <UpdateEvent
         data={data}
         eventId={eventContributerId}
