@@ -42,7 +42,7 @@ export default function Navbar({ user, ProfileUser }) {
               router.push("/");
             }}
           >
-            GSG Event Management
+            GSG Events
           </div>
 
           <div className=" hidden lg:flex flex-row mt-6   grid gap-10 grid-cols-3 mr-5">
