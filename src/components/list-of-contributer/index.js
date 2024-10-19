@@ -112,6 +112,8 @@ export default function ListOfContibuter({
       <Table className="border">
         <TableHeader>
           <TableRow>
+            <TableHead className="w-[100px]">#</TableHead>{" "}
+            {/* Add a header for Serial Number */}
             <TableHead className="w-[100px]">Name</TableHead>
             <TableHead>Class Name</TableHead>
             <TableHead>Date</TableHead>
@@ -119,10 +121,12 @@ export default function ListOfContibuter({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filterLists.map((data) => (
+          {filterLists.map((data, index) => (
             <TableRow key={data.name}>
-              <TableCell className="font-medium">{data.name}</TableCell>
-              <TableCell>{data?.class_Name}</TableCell>
+              <TableCell className="font-medium">{index + 1}</TableCell>{" "}
+              {/* Serial Number */}
+              <TableCell>{data.name}</TableCell>
+              <TableCell>{data.class_Name}</TableCell>
               <TableCell>{data.date}</TableCell>
               <TableCell className="text-right">{data.amount}</TableCell>
             </TableRow>

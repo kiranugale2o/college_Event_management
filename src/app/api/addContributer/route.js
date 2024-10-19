@@ -37,7 +37,7 @@ export async function POST(req) {
         { _id: updateEventContributor._id },
         {
           totalContributingAmount:
-            updateEventContributor.totalContributingAmount +
+            updateEventContributor?.totalContributingAmount +
             Number(data.amount),
         }
       );

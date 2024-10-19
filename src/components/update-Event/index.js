@@ -50,19 +50,20 @@ export default function UpdateEvent({
           <Table className="border">
             <TableHeader>
               <TableRow>
+                <TableHead>Id</TableHead>
                 <TableHead className="w-[180px]">
                   Money Spent field Name
                 </TableHead>
-                <TableHead>id</TableHead>
+
                 <TableHead>Date</TableHead>
                 <TableHead className="text-right">spent Amount</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {SpentAmount.map((data) => (
+              {SpentAmount.map((data, index) => (
                 <TableRow key={data.name}>
+                  <TableCell className="font-medium">{index + 1}</TableCell>{" "}
                   <TableCell className="font-medium">{data.name}</TableCell>
-                  <TableCell>{data._id}</TableCell>
                   <TableCell>{data.date}</TableCell>
                   <TableCell className="text-right">{data.amount}</TableCell>
                 </TableRow>
