@@ -26,6 +26,11 @@ export default function Navbar({ user, ProfileUser }) {
       path: "/events",
       show: ProfileUser,
     },
+    {
+      label: "As Organizer",
+      path: "/admin",
+      show: ProfileUser,
+    },
   ];
   return (
     <>
