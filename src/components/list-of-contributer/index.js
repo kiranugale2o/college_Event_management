@@ -82,7 +82,7 @@ export default function ListOfContibuter({
   return (
     <div className=" justify-between">
       <div className="block">
-        <h1>filter Contibuters List</h1>
+        <h1>filter Contributors List</h1>
         <Menubar className="flex w-[140px] ">
           {filterMenu.map((item) => (
             <MenubarMenu key={item.id}>
