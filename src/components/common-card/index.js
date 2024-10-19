@@ -25,7 +25,7 @@ export default function CommonCard({
 
   return (
     <>
-      <Card className="w-[300px] lg:w-[380px] shadow-md bg-sky-100">
+      <Card className="w-[350px] lg:w-[380px] shadow-md bg-sky-100">
         <CardHeader>
           <CardTitle className="flex ">
             <PartyPopper />
