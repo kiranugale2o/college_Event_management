@@ -39,7 +39,7 @@ export default function CommonCard({
         <CardFooter className="flex flex-wrap lg:flex gap-2">
           {oragnizer ? <AddContribute id={eventId} /> : null}
           <Button onClick={() => router.push(`/events/${eventId}`)}>
-            View Contibuters
+            View Contributors
           </Button>
 
           {!oragnizer ? (
