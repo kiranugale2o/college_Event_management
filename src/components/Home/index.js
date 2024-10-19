@@ -201,6 +201,11 @@ export default function HomePage({ Events }) {
           </div>
         </div>
       </div>
+      <footer>
+        <div className="text-[10px] text-center p-2 bg-gray-200">
+          Designed & Developed by Bca boys
+        </div>
+      </footer>
     </>
   );
 }
