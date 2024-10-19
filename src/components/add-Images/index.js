@@ -80,14 +80,14 @@ export default function AddImages(eId) {
   };
   return (
     <>
-      <Dialog open={dialogBtn}>
+      <Dialog open={dialogBtn} onOpenChange={setDialogBtn}>
         <Button variant="outline" onClick={() => setDialogBtn(true)}>
           Add Images
         </Button>
 
         <DialogContent className=" overflow-auto h-[200px]  w-[320px] lg:w-[400px]">
           <DialogHeader>
-            <DialogTitle> Add Contributer</DialogTitle>
+            <DialogTitle> Add Image</DialogTitle>
             <DialogDescription>
               Fill all Information of Event !
             </DialogDescription>

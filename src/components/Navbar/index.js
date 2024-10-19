@@ -27,9 +27,9 @@ export default function Navbar({ user, ProfileUser }) {
       show: ProfileUser,
     },
     {
-      label: "As Organizer",
+      label: "Organizer",
       path: "/admin",
-      show: ProfileUser,
+      show: user,
     },
   ];
   return (
