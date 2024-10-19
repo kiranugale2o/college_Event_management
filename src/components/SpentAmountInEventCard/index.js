@@ -39,10 +39,20 @@ export default function SpentAmountCard({ eventId }) {
     }).then((res) =>
       res.json().then((res) => {
         if (res.success) {
-          toast.success(res.message);
-
-          setCurrentSpentMoney(spentAmountInitialData);
-          router.refresh("");
+          fetch("/api/updateSpentAmount", {
+            method: "POST",
+            body: JSON.stringify({
+              data: data,
+              addSpentId: res?.id,
+              id: eventId,
+            }),
+          }).then((res) =>
+            res.json().then((res) => {
+              toast.success(res.message);
+              setCurrentSpentMoney(spentAmountInitialData);
+              router.refresh("");
+            })
+          );
         } else {
           toast.error("Network problem");
         }

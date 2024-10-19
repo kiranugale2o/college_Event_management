@@ -41,10 +41,17 @@ export default function AddContribute(id) {
       res.json().then((res) => {
         if (res.success) {
           res.toggle = true; // This is now safe
-          toast.success(res.message);
 
-          setCurrentContributeData(ContibutersInitialData);
-          router.refresh("/events");
+          fetch("/api/updateTotalAmonts", {
+            method: "POST",
+            body: JSON.stringify({ cid: res?.id, eid: id, data: data }),
+          }).then((res) =>
+            res.json().then((res) => {
+              toast.success(res.message);
+              setCurrentContributeData(ContibutersInitialData);
+              router.refresh("/events");
+            })
+          );
         } else {
           toast.error(res.message);
         }
