@@ -1,38 +1,8 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1",
-      "methods": ["POST", "GET", "OPTIONS"]
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
-
   "functions": {
-    "api/addContributer/route.js": {
+    "api/**/*.js": {
       "maxDuration": 30
     }
-  },
-  "env": {
-    "MY_ENV_VARIABLE": "value"
-  },
-  "routes": [
-    {
-      "src": "/old-route",
-      "status": 301,
-      "headers": {
-        "Location": "/new-route"
-      }
-    }
-  ]
+  }
 }

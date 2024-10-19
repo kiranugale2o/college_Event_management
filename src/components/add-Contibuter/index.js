@@ -46,7 +46,7 @@ export default function AddContribute(id) {
           setCurrentContributeData(ContibutersInitialData);
           router.refresh("/events");
         } else {
-          toast.error("Network problem");
+          toast.error(res.message);
         }
       })
     );

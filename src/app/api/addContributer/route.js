@@ -8,6 +8,7 @@ export async function POST(req) {
     console.log("Received data:", data);
     console.log("Event ID:", id);
 
+    // Create a new contributor
     const createContribute = await Contributers.create({
       name: data.name,
       class_Name: data.class_Name,
@@ -17,29 +18,33 @@ export async function POST(req) {
 
     console.log("Created Contributor:", createContribute);
 
-    const updateEventContibuter = await Events.findOneAndUpdate(
+    // Update the event's contributors
+    const updateEventContributor = await Events.findOneAndUpdate(
       { _id: id?.id },
       {
         $push: {
           contributors: createContribute?._id,
         },
-      }
+      },
+      { new: true } // Return the updated document
     );
 
-    console.log("Updated Event Contributor:", updateEventContibuter);
+    console.log("Updated Event Contributor:", updateEventContributor);
 
-    if (updateEventContibuter) {
+    if (updateEventContributor) {
+      // Update the total contributing amount
       await Events.updateOne(
-        { _id: updateEventContibuter._id },
+        { _id: updateEventContributor._id },
         {
           totalContributingAmount:
-            updateEventContibuter.totalContributingAmount + Number(data.amount),
+            updateEventContributor.totalContributingAmount +
+            Number(data.amount),
         }
       );
 
       return NextResponse.json({
         success: true,
-        message: "add !",
+        message: "Contributor added successfully!",
       });
     } else {
       return NextResponse.json({
