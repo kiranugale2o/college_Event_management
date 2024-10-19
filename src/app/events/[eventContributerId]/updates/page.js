@@ -8,12 +8,12 @@ export default async function UpdateEventsInfo({ params }) {
   const data = await getAllContributerList(eventContributerId);
 
   const user = await currentUser();
-  if (!user) redirect("/sign-up");
+  //   if (!user) redirect("/sign-up");
 
   const ProfileUser = await fetchUser(user?.userId);
-  if (user && !ProfileUser?._id) {
-    redirect("/onboard");
-  }
+  //   if (user && !ProfileUser?._id) {
+  //     redirect("/onboard");
+  //   }
 
   return (
     <div className="p-3 lg:p-24">

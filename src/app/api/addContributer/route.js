@@ -1,19 +1,21 @@
-import Events from "@/model/Events";
+import { Events, Contributers } from "@/model/Events";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
     const { data, id } = await req.json();
+
+    const createContribute = await Contributers.create({
+      name: data.name,
+      class_Name: data.class_Name,
+      date: data.date,
+      amount: data.amount,
+    });
     const updateEventContibuter = await Events.findOneAndUpdate(
       { _id: id?.id }, // Filter to find the document
       {
         $push: {
-          contributors: {
-            name: data.name,
-            class_Name: data.class_Name,
-            date: data.date,
-            amount: data.amount,
-          },
+          contributors: createContribute?._id,
         },
       }
     );

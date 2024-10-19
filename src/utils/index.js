@@ -112,6 +112,7 @@ export const ContributorFormFields = [
   {
     label: "classname",
     name: "class_Name",
+    type: "select",
     placeholder: "Enter Contributer Class Name",
   },
   {
@@ -171,3 +172,59 @@ export function calculateDay(mydate) {
 
   return differenceInDays;
 }
+
+import qs from "query-string";
+export function formUrlQuery({ params, data }) {
+  const currentUrl = qs.parse(params);
+  if (Object.keys(data).length > 0) {
+    Object.keys(data).map((key) => {
+      if (data[key].length === 0) delete currentUrl[key];
+      else currentUrl[key] = data[key].join(",");
+    });
+  }
+
+  return qs.stringifyUrl(
+    {
+      url: window.location.pathname,
+      query: currentUrl,
+    },
+    {
+      skipNull: true,
+    }
+  );
+}
+
+export const filterMenuDataArray = [
+  {
+    id: "class_Name",
+    label: "Class",
+  },
+  {
+    id: "amount",
+    label: "Amount",
+  },
+];
+
+//upload image
+// uploadImage.js
+
+// firebaseConfig.js (Example Firebase configuration file)
+
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD9X4hY1a1W9jOI0LedOvOs8L07bhSVGqg",
+  authDomain: "studybuddy-5a2fe.firebaseapp.com",
+  projectId: "studybuddy-5a2fe",
+  storageBucket: "studybuddy-5a2fe.appspot.com",
+  messagingSenderId: "481736869337",
+  appId: "1:481736869337:web:6fc2c02f44dea61e1245c8",
+  measurementId: "G-R8J22FTCV8",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase Storage
+export const storage = getStorage(app);

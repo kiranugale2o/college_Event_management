@@ -1,5 +1,5 @@
 import DatabaseConn from "@/database";
-import Events from "@/model/Events";
+import { Events, Spentamount } from "@/model/Events";
 import { Database } from "lucide-react";
 import { NextResponse } from "next/server";
 
@@ -8,15 +8,16 @@ export async function POST(req) {
     await DatabaseConn();
     const { data, id } = await req.json();
 
+    const addSpent = await Spentamount.create({
+      name: data.name,
+      amount: data.amount,
+      date: data.date,
+    });
     const updateEventSpentRecords = await Events.findOneAndUpdate(
       { _id: id }, // Filter to find the document
       {
         $push: {
-          spentAmount: {
-            name: data.name,
-            amount: data.amount,
-            date: data.date,
-          },
+          spentAmount: addSpent?._id,
         },
       }
     );
@@ -24,9 +25,19 @@ export async function POST(req) {
     if (updateEventSpentRecords) {
       await Events.updateOne(
         { _id: updateEventSpentRecords._id },
+
         {
           totalSpentAmount:
             updateEventSpentRecords.totalSpentAmount + Number(data.amount),
+        }
+      );
+
+      await Events.updateOne(
+        { _id: updateEventSpentRecords._id },
+        {
+          RemainingBalance:
+            updateEventSpentRecords.totalContributingAmount -
+            Number(data.amount),
         }
       );
 

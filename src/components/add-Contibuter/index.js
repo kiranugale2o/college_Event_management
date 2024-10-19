@@ -40,8 +40,9 @@ export default function AddContribute(id) {
     }).then((res) =>
       res.json().then((res) => {
         if (res.success) {
+          res.toggle = true; // This is now safe
           toast.success(res.message);
-          setDialogBtn(false);
+
           setCurrentContributeData(ContibutersInitialData);
           router.refresh("/events");
         } else {
@@ -49,6 +50,7 @@ export default function AddContribute(id) {
         }
       })
     );
+    setDialogBtn(false);
   }
   return (
     <>

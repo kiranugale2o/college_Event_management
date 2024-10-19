@@ -9,11 +9,106 @@ import {
   TableFooter,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarTrigger,
+} from "../ui/menubar";
+import { useRouter } from "next/navigation";
+import { filterMenuDataArray, formUrlQuery } from "@/utils";
+import { Label } from "../ui/label";
 import { useEffect, useState } from "react";
 
-export default function ListOfContibuter({ data, eventName, total }) {
+export default function ListOfContibuter({
+  data,
+  eventName,
+  total,
+  filterLists,
+}) {
+  const router = useRouter();
+  const [filterParams, setFilterParams] = useState({});
+  const [mytotal, setTotal] = useState(total);
+  // Generate filterMenu
+  const filterMenu = filterMenuDataArray.map((item) => ({
+    id: item.id,
+    name: item.label,
+    options: [...new Set(data.map((listItem) => listItem[item.id]))],
+  }));
+
+  // Handle filter selection
+  async function handleFilter(getfilterId, getOption) {
+    const cpyFilterParams = { ...filterParams };
+
+    if (!cpyFilterParams[getfilterId]) {
+      cpyFilterParams[getfilterId] = [];
+    }
+
+    const indexOfCurrentOption = cpyFilterParams[getfilterId].indexOf(
+      getOption
+    );
+    if (indexOfCurrentOption === -1) {
+      cpyFilterParams[getfilterId].push(getOption);
+    } else {
+      cpyFilterParams[getfilterId].splice(indexOfCurrentOption, 1);
+    }
+
+    setFilterParams(cpyFilterParams);
+    sessionStorage.setItem("filterParams", JSON.stringify(cpyFilterParams));
+  }
+
+  // Load filterParams from sessionStorage on initial render
+  useEffect(() => {
+    const storedParams = JSON.parse(sessionStorage.getItem("filterParams"));
+    if (storedParams) {
+      setFilterParams(storedParams);
+    }
+  }, []);
+
+  // Update the URL with query parameters without page refresh
+  useEffect(() => {
+    if (Object.keys(filterParams).length > 0) {
+      const url = formUrlQuery({
+        params: window.location.search,
+        data: filterParams,
+      });
+      router.push(url, { scroll: false }, { shallow: true });
+    }
+
+    sessionStorage.removeItem("filterParams");
+  }, [filterParams]);
+
   return (
-    <>
+    <div className=" justify-between">
+      <div className="block">
+        <h1>filter Contibuters List</h1>
+        <Menubar className="flex w-[140px] ">
+          {filterMenu.map((item) => (
+            <MenubarMenu key={item.id}>
+              <MenubarTrigger>{item.name}</MenubarTrigger>
+              <MenubarContent>
+                {item.options.map((menuItem, index) => (
+                  <MenubarItem
+                    key={index}
+                    onClick={() => handleFilter(item.id, menuItem)}
+                  >
+                    <div
+                      className={`h-4 w-4 border rounded border-gray-800 ${
+                        filterParams[item.id]?.includes(menuItem)
+                          ? "bg-black"
+                          : ""
+                      }`}
+                    ></div>
+                    <Label className="ml-2">{menuItem}</Label>
+                  </MenubarItem>
+                ))}
+              </MenubarContent>
+            </MenubarMenu>
+          ))}
+        </Menubar>
+      </div>
+      <br />
       <Table className="border">
         <TableHeader>
           <TableRow>
@@ -24,10 +119,9 @@ export default function ListOfContibuter({ data, eventName, total }) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((data) => (
+          {filterLists.map((data) => (
             <TableRow key={data.name}>
               <TableCell className="font-medium">{data.name}</TableCell>
-
               <TableCell>{data?.class_Name}</TableCell>
               <TableCell>{data.date}</TableCell>
               <TableCell className="text-right">{data.amount}</TableCell>
@@ -41,6 +135,6 @@ export default function ListOfContibuter({ data, eventName, total }) {
           </TableRow>
         </TableFooter>
       </Table>
-    </>
+    </div>
   );
 }

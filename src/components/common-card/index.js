@@ -11,6 +11,7 @@ import { PartyPopper } from "lucide-react";
 import { Button } from "../ui/button";
 import AddContribute from "../add-Contibuter";
 import { useRouter } from "next/navigation";
+import AddImages from "../add-Images";
 
 export default function CommonCard({
   eventId,
@@ -20,9 +21,11 @@ export default function CommonCard({
   oragnizer,
 }) {
   const router = useRouter();
+  console.log("eventid", eventId);
+
   return (
     <>
-      <Card className="w-[340px] lg:w-[400px] shadow-md bg-sky-100">
+      <Card className="w-[300px] lg:w-[380px] shadow-md bg-sky-100">
         <CardHeader>
           <CardTitle className="flex ">
             <PartyPopper />
@@ -40,14 +43,19 @@ export default function CommonCard({
           </Button>
 
           {!oragnizer ? (
-            <Button onClick={() => router.push(`/events/${eventId}/update`)}>
+            <Button onClick={() => router.push(`/events/${eventId}/updates`)}>
               See Event Details
             </Button>
           ) : (
-            <Button onClick={() => router.push(`/events/${eventId}/update`)}>
+            <Button onClick={() => router.push(`/events/${eventId}/updates`)}>
               Update
             </Button>
           )}
+
+          {!oragnizer ? null : <AddImages eId={eventId} />}
+          <Button onClick={() => router.push(`/events/${eventId}/gallery`)}>
+            Gallery
+          </Button>
         </CardFooter>
       </Card>
     </>

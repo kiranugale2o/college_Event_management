@@ -40,7 +40,7 @@ export default function SpentAmountCard({ eventId }) {
       res.json().then((res) => {
         if (res.success) {
           toast.success(res.message);
-          setDialogBtn(false);
+
           setCurrentSpentMoney(spentAmountInitialData);
           router.refresh("");
         } else {
@@ -48,6 +48,7 @@ export default function SpentAmountCard({ eventId }) {
         }
       })
     );
+    setDialogBtn(false);
   }
 
   return (

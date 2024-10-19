@@ -20,16 +20,7 @@ export default function Navbar({ user, ProfileUser }) {
       path: "/",
       show: true,
     },
-    {
-      label: "login",
-      path: "/sign-in",
-      show: !user,
-    },
-    {
-      label: "register",
-      path: "/sign-up",
-      show: !user,
-    },
+
     {
       label: "events",
       path: "/events",

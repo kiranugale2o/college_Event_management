@@ -22,31 +22,60 @@ export function PostEvent({ ProfileUser }) {
   const [currentEventData, setCurrentEventData] = useState(eventInitialData);
   const [dialogBtn, setDialogBtn] = useState(false);
   const router = useRouter();
-  function addEvnet() {
+
+  function addEvent() {
     const data = {
       OrganizerId: ProfileUser?._id,
       OrganizerName: ProfileUser?.organizer.name,
       totalContributingAmount: 0,
       totalSpentAmount: 0,
+      RemainingBalance: 0,
+      eventGallary:
+        "https://firebasestorage.googleapis.com/v0/b/studybuddy-5a2fe.appspot.com/o/images%2Fgsglogo.png?alt=media&token=b25d4ee8-c81e-4ad1-b8af-98163bb392ab",
       ...currentEventData,
     };
 
     fetch("/api/createEvent", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ data: data }),
-    }).then((res) =>
-      res.json().then((res) => {
+    })
+      .then((res) => {
+        // Log the entire response object
+        console.log("Response from API:", res);
+
+        // Check if the response is OK (status in the range 200-299)
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
+      .then((res) => {
+        // Log the parsed JSON response
+        console.log("Parsed JSON response:", res);
+
         if (res.success) {
+          // Check if the response has a toggle property before setting it
+          if (res.toggle !== undefined) {
+            res.toggle = true; // Only set toggle if it exists
+          }
+
           toast.success(res.message);
           setDialogBtn(false);
-          setCurrentEventData("");
-          router.refresh("/events");
+          setCurrentEventData(eventInitialData); // Reset to initial data
+          router.refresh(); // Refresh the current route
         } else {
           toast.error(res.message);
         }
       })
-    );
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+        toast.error("Failed to add event. Please try again."); // Handle the error
+      });
   }
+
   return (
     <Dialog open={dialogBtn} onOpenChange={setDialogBtn}>
       <Button variant="outline" onClick={() => setDialogBtn(true)}>
@@ -64,7 +93,7 @@ export function PostEvent({ ProfileUser }) {
             currentData={currentEventData}
             setData={setCurrentEventData}
             buttonText={"Add Event"}
-            buttonAction={addEvnet}
+            buttonAction={addEvent}
           ></CommonForm>
         </div>
       </DialogContent>
