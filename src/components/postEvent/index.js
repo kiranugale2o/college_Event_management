@@ -63,7 +63,7 @@ export function PostEvent({ ProfileUser }) {
           }
 
           toast.success(res.message);
-          setDialogBtn(false);
+
           setCurrentEventData(eventInitialData); // Reset to initial data
           router.refresh(); // Refresh the current route
         } else {
@@ -74,6 +74,7 @@ export function PostEvent({ ProfileUser }) {
         console.error("There was a problem with the fetch operation:", error);
         toast.error("Failed to add event. Please try again."); // Handle the error
       });
+    setDialogBtn(false);
   }
 
   return (
@@ -86,6 +87,10 @@ export function PostEvent({ ProfileUser }) {
         <DialogHeader>
           <DialogTitle>Add New Event</DialogTitle>
           <DialogDescription>Fill all Information of Event !</DialogDescription>
+          <DialogDescription className="text-red-200">
+            Note :If any application client error occurred then simply refresh
+            the page !
+          </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <CommonForm

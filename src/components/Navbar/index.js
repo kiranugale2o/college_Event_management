@@ -36,17 +36,49 @@ export default function Navbar({ user, ProfileUser }) {
   return (
     <>
       <div>
-        <div className="flex  shadow justify-between item-center w-full bg-cyan-50  h-auto ">
-          <div
-            className="text-start w-full flex text-2xl font-semibold p-5 uppercase justify-between "
-            onClick={() => {
-              router.push("/");
-            }}
-          >
-            GSG Events
-            <Link className="lg:hidden" href={"/"}>
-              <Button>Home</Button>
-            </Link>
+        <div className="flex  shadow justify-between item-center w-full bg-gray-100  h-auto ">
+          <div class=" flex items-center w-full py-2 lg:p-0 justify-between lg:gap-2 text-[#111418]">
+            <h2 class="text-[#111418]   p-3 lg:p-5  text-[25px] lg:text-3xl font-bold leading-tight tracking-[-0.015em] font-montserrat">
+              GSG Events
+            </h2>
+            <Sheet>
+              <SheetTrigger
+                className={`flex mt-0  mr-10  lg:hidden ${
+                  user ? "block" : "hidden"
+                }`}
+              >
+                <MenuIcon className="font-2xl  size-9   " />
+              </SheetTrigger>
+
+              <SheetContent className="py-24">
+                <SheetTitle
+                  className="uppercase text-2xl semibold  font-montserrat"
+                  onClick={() => {
+                    router.push("/");
+                  }}
+                >
+                  GSG Events
+                </SheetTitle>
+                <div className=" flex flex-col lg:hidden justify-start  mt-6 gap-5   ">
+                  {menuItems.map((d) => {
+                    return (
+                      <div key={d.name}>
+                        {d.show ? (
+                          <SheetClose asChild>
+                            <Link
+                              href={d.path}
+                              className="font-semibold uppercase flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#f0f2f4] hover:bg-sky-300 bg-sky-100 text-[#111418] text-sm font-bold leading-normal tracking-[0.015em] "
+                            >
+                              {d.label}
+                            </Link>
+                          </SheetClose>
+                        ) : null}
+                      </div>
+                    );
+                  })}
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
 
           <div className=" hidden lg:flex flex-row mt-6   grid gap-10 grid-cols-3 mr-5">

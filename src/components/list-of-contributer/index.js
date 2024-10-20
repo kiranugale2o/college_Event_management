@@ -80,9 +80,9 @@ export default function ListOfContibuter({
   }, [filterParams]);
 
   return (
-    <div className=" justify-between">
+    <div className=" justify-between  p-2 lg:p-0">
       <div className="block">
-        <h1>filter Contributors  List</h1>
+        <h1>filter Contibuters List</h1>
         <Menubar className="flex w-[140px] ">
           {filterMenu.map((item) => (
             <MenubarMenu key={item.id}>
@@ -109,10 +109,10 @@ export default function ListOfContibuter({
         </Menubar>
       </div>
       <br />
-      <Table className="border">
+      <Table className="border ">
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">#</TableHead>{" "}
+            <TableHead className="w-[100px]">No.</TableHead>{" "}
             {/* Add a header for Serial Number */}
             <TableHead className="w-[100px]">Name</TableHead>
             <TableHead>Class Name</TableHead>

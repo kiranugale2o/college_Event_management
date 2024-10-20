@@ -56,6 +56,7 @@ export default function AddImages(eId) {
   };
 
   const handleUpload = async () => {
+    setDialogBtn(false);
     if (selectedFile) {
       const url = await uploadImage(selectedFile);
       setImageURL(url); // Save the URL to state or perform other actions
@@ -68,6 +69,7 @@ export default function AddImages(eId) {
             toast.success(res.message);
             setDialogBtn();
             setImageURL("");
+
             router.refresh("/events");
           } else {
             toast.error(res.message);
@@ -76,7 +78,6 @@ export default function AddImages(eId) {
         })
       );
     }
-    setDialogBtn(false);
   };
   return (
     <>
@@ -85,7 +86,7 @@ export default function AddImages(eId) {
           Add Images
         </Button>
 
-        <DialogContent className=" overflow-auto h-[200px]  w-[320px] lg:w-[400px]">
+        <DialogContent className=" overflow-auto h-[250px]  w-[320px] lg:w-[400px]">
           <DialogHeader>
             <DialogTitle> Add Image</DialogTitle>
             <DialogDescription>
@@ -101,8 +102,11 @@ export default function AddImages(eId) {
                   accept="image/*"
                   onChange={handleFileChange}
                 />
-                <Button type="submit">Upload</Button>
-                {imageURL && (
+                <br />
+                <Button className="mt-5" type="submit">
+                  Upload
+                </Button>
+                {/* {imageURL && (
                   <div>
                     <h3>Uploaded Image:</h3>
                     <img
@@ -110,8 +114,9 @@ export default function AddImages(eId) {
                       alt="Uploaded"
                       style={{ width: "300px" }}
                     />
+                   
                   </div>
-                )}
+                )} */}
               </div>
             </form>
           </div>

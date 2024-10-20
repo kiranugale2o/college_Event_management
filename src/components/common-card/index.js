@@ -12,6 +12,7 @@ import { Button } from "../ui/button";
 import AddContribute from "../add-Contibuter";
 import { useRouter } from "next/navigation";
 import AddImages from "../add-Images";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function CommonCard({
   eventId,
@@ -25,11 +26,15 @@ export default function CommonCard({
 
   return (
     <>
-      <Card className="w-[350px] lg:w-[380px] shadow-md bg-sky-100">
+      <Card className="w-[350px] lg:w-[380px] ">
         <CardHeader>
           <CardTitle className="flex ">
-            <PartyPopper />
-            <div className="text-[25px] ml-5">{eventName}</div>
+            <Avatar size="10">
+              <AvatarImage src="gsglogo.png" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+
+            <div className="text-[25px] mt-2 font-sans ">{eventName}</div>
           </CardTitle>
 
           {eventBranch ? <CardTitle>{eventBranch}</CardTitle> : null}
