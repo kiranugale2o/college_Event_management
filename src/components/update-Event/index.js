@@ -93,17 +93,7 @@ export default function UpdateEvent({
             Remaining balance : Rs.{data.RemainingBalance}
           </div>
           <br />
-          {data.totalSpentAmount < data.totalContributingAmount ? (
-            <div className="text-[20px] text-green-600 bg-gray-200 shadow-lg">
-              That Time This Event Is balanced . Because This Event Expenses
-              amount Is less than Total deposit
-            </div>
-          ) : (
-            <div className="text-[20px] text-red-600  bg-gray-200 shadow-lg border p-3 rounded-full">
-              That Time This Event Is Unbalanced . Because This Event Expenses
-              amount Is greater than than Total deposit
-            </div>
-          )}
+       
         </div>
       </div>
     </>
