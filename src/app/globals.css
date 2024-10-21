@@ -76,3 +76,56 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.invitation-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.invitation-card h1 {
+  margin-bottom: 10px;
+}
+.invitation-card p {
+  margin: 10px 0;
+  color: #555;
+}
+.details {
+  margin: 20px 0;
+}
+.button {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+}
+.button:hover {
+  background-color: #45a049;
+}
+
+.receipt {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  text-align: center;
+}
+
+.details {
+  margin: 15px 0;
+  text-align: left;
+}
+.details p {
+  margin: 5px 0;
+}
+.amount {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4caf50;
+}
+.footer {
+  margin-top: 30px;
+  font-size: 12px;
+  color: #777;
+}

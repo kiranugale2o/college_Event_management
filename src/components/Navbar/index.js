@@ -42,11 +42,7 @@ export default function Navbar({ user, ProfileUser }) {
               GSG Events
             </h2>
             <Sheet>
-              <SheetTrigger
-                className={`flex mt-0  mr-10  lg:hidden ${
-                  user ? "block" : "hidden"
-                }`}
-              >
+              <SheetTrigger className={`flex mt-0  mr-10  lg:hidden`}>
                 <MenuIcon className="font-2xl  size-9   " />
               </SheetTrigger>
 

@@ -20,10 +20,13 @@ import { useRouter } from "next/navigation";
 import { filterMenuDataArray, formUrlQuery } from "@/utils";
 import { Label } from "../ui/label";
 import { useEffect, useState } from "react";
+import CaptureImage from "../captured-image";
+import RecepitCard from "../receipt-card";
 
 export default function ListOfContibuter({
   data,
   eventName,
+  eventDate,
   total,
   filterLists,
 }) {
@@ -125,7 +128,18 @@ export default function ListOfContibuter({
             <TableRow key={data.name}>
               <TableCell className="font-medium">{index + 1}</TableCell>{" "}
               {/* Serial Number */}
-              <TableCell>{data.name}</TableCell>
+              <TableCell>
+                {data.name}
+                <br></br>
+                <div className="flex gap-2">
+                  <CaptureImage events={eventName} eventDate={eventDate} />
+                  <RecepitCard
+                    eventName={eventName}
+                    data={data}
+                    date={eventDate}
+                  />
+                </div>
+              </TableCell>
               <TableCell>{data.class_Name}</TableCell>
               <TableCell>{data.date}</TableCell>
               <TableCell className="text-right">{data.amount}</TableCell>

@@ -4,8 +4,10 @@ import {
   getAllEvents,
   OrganizerEvent,
 } from "@/actions";
+import CaptureImage from "@/components/captured-image";
 import EventsPageCard from "@/components/event-page";
 import HomePage from "@/components/Home";
+import RecepitCard from "@/components/receipt-card";
 
 import Image from "next/image";
 

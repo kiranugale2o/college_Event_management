@@ -228,3 +228,54 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Storage
 export const storage = getStorage(app);
+
+// Function to get the day name from a date string
+export function getDayName(dateString) {
+  // Create a new Date object from the date string
+  const date = new Date(dateString);
+
+  // Array of day names
+  const dayNames = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  // Get the day index (0 for Sunday, 1 for Monday, etc.)
+  const dayIndex = date.getUTCDay();
+
+  // Return the corresponding day name
+  return dayNames[dayIndex];
+}
+
+// Function to get the month name from a date string
+export function getMonthName(dateString) {
+  // Create a new Date object from the date string
+  const date = new Date(dateString);
+
+  // Array of month names
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  // Get the month index (0 for January, 1 for February, etc.)
+  const monthIndex = date.getUTCMonth();
+
+  // Return the corresponding month name
+  return monthNames[monthIndex];
+}

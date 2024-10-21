@@ -29,6 +29,7 @@ export default async function getContributerList({ params, searchParams }) {
       <ListOfContibuter
         filterLists={filterListData.filteredContributors}
         data={data.contributors}
+        eventDate={data.date}
         eventName={data.eventName}
         total={filterListData?.total}
       />
