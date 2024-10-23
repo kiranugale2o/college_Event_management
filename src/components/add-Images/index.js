@@ -67,7 +67,7 @@ export default function AddImages(eId) {
         res.json().then((res) => {
           if (res.success) {
             toast.success(res.message);
-            setDialogBtn();
+
             setImageURL("");
 
             router.refresh("/events");
@@ -77,6 +77,7 @@ export default function AddImages(eId) {
           }
         })
       );
+      setDialogBtn();
     }
   };
   return (
@@ -106,17 +107,6 @@ export default function AddImages(eId) {
                 <Button className="mt-5" type="submit">
                   Upload
                 </Button>
-                {/* {imageURL && (
-                  <div>
-                    <h3>Uploaded Image:</h3>
-                    <img
-                      src={imageURL}
-                      alt="Uploaded"
-                      style={{ width: "300px" }}
-                    />
-                   
-                  </div>
-                )} */}
               </div>
             </form>
           </div>

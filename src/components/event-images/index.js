@@ -13,12 +13,15 @@ export default function ImageShowingCard({ data }) {
             <>
               {data[0].eventGallary.map((d, i) => {
                 return (
-                  <img
-                    className="w-[300px] border h-[280px] p-auto lg:p-0"
-                    key={i}
-                    src={d}
-                    alt="event image"
-                  />
+                  <>
+                    <img
+                      className="lg:h-auto lg:w-[550px] p-auto lg:p-0"
+                      key={i}
+                      src={d}
+                      alt="event image"
+                    />
+                    <hr />
+                  </>
                 );
               })}
             </>
