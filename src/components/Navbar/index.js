@@ -30,7 +30,7 @@ export default function Navbar({ user, ProfileUser }) {
     {
       label: "Organizer",
       path: "/admin",
-      show: user,
+      show: true,
     },
   ];
   return (
