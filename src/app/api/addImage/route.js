@@ -1,8 +1,10 @@
+import DatabaseConn from "@/database";
 import { Events } from "@/model/Events";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
+    await DatabaseConn();
     const { myurl, id } = await req.json();
     const getData = await Events.updateOne(
       { _id: id },
