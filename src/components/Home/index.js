@@ -174,7 +174,7 @@ export default function HomePage({ Events }) {
                         {d.branch}:{d.eventName}
                       </p>
                       <p className="text-[#637588] text-sm font-normal leading-normal line-clamp-2">
-                        Starts in {calculateDay(d?.date)} days
+                         {calculateDay(d?.date) < 0 ?"Event Ended":`Starts in days ${calculateDay(d?.date)}`} 
                       </p>
                     </div>
                   </div>
