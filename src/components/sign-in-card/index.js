@@ -25,7 +25,7 @@ const initialSignInData = {
 
 export default function SignInCard() {
   const [currentSignInData, setCurrentSignInData] = useState(initialSignInData);
-
+  const [loading, setLoading] = useState(false);
   function handleButtonDisabled() {
     if (
       currentSignInData.email.trim() === "" ||
@@ -39,6 +39,7 @@ export default function SignInCard() {
 
   const router = useRouter();
   function handleSignIn() {
+    setLoading(true);
     fetch("/api/sign-in", {
       method: "POST",
       body: JSON.stringify(currentSignInData),
@@ -48,8 +49,10 @@ export default function SignInCard() {
           Cookies.set("event_management", res.token);
           toast.success(res.message);
           router.refresh("/");
+          setLoading(false);
         } else {
           toast.error(res.message);
+          setLoading(false);
         }
       })
     );
@@ -93,6 +96,7 @@ export default function SignInCard() {
           <form className="" action={handleSignIn}>
             <Label>Email address</Label>
             <Input
+              required
               onChange={(e) => {
                 setCurrentSignInData({
                   ...currentSignInData,
@@ -103,6 +107,7 @@ export default function SignInCard() {
             <br />
             <Label>Password</Label>
             <Input
+              required
               type="password"
               onChange={(e) => {
                 setCurrentSignInData({
@@ -124,7 +129,7 @@ export default function SignInCard() {
             </Button>
             <br />
             <Button
-              disabled={handleButtonDisabled()}
+              disabled={loading}
               type="submit"
               className=" p-0 w-full disabled:opacity-50"
               //   variant="secondary"

@@ -39,6 +39,7 @@ export default function SignUpCard() {
     }
   });
 
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   //signIn handle function call api
   function handleSignUp() {
@@ -73,6 +74,7 @@ export default function SignUpCard() {
           <form className="" action={handleSignUp}>
             <Label>Email address</Label>
             <Input
+              required
               type="email"
               onChange={(e) => {
                 setCurrentSignUpData({
@@ -84,6 +86,7 @@ export default function SignUpCard() {
             <br />
             <Label>Password</Label>
             <Input
+              required
               onChange={(e) => {
                 setCurrentSignUpData({
                   ...currentSignUpData,
